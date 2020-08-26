@@ -1,14 +1,13 @@
-function pokedex() {
+fetch("https://pokeapi.co/api/v2/pokemon/")
+        .then(res => res.json())
+        .then(function(data) {
+            console.log(data);
+            let character = document.querySelector("#character");
+            let characterList = document.querySelector(".characterList");
 
-    fetch("https://pokeapi.co/api/v2/pokemon/")
-         .then(res => res.json())
-         .then(function(data) {
-             let character = document.querySelector("");
-             quote.innerText = data.contents.quotes[0].quote;
-         });
- 
- }
- 
- export default pokedex;
-
-https://pokeapi.co/api/v2/pokemon/
+            data.results.forEach(function(result) {
+                let clone = character.content.cloneNode(true);
+                clone.querySelector(".character").innerText = result.name;
+                characterList.appendChild(clone);
+            })
+        });
